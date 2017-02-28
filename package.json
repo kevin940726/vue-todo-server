@@ -1,7 +1,7 @@
 {
-  "name": "vue-realtime-todo",
+  "name": "vue-todo-server",
   "version": "1.0.0",
-  "description": "A realtime todo list app built with vue.",
+  "description": "An online todo list sample app built with vue.",
   "author": "Kai Hao <kevin830726@gmail.com>",
   "private": true,
   "engines": {
