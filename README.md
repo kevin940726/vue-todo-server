@@ -1,6 +1,8 @@
 # vue-todo-server
 
 > A realtime todo list app built with vue.
+> [demo](https://vue-todo-server-xhwhlmajqu.now.sh)
+
 
 ## Build Setup
 
@@ -24,4 +26,9 @@ yarn run unit
 yarn test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Getting Started
+After installing the dependencies,
+```bash
+yarn start
+```
+Head to [localhost:3000](http://localhost:3000)
