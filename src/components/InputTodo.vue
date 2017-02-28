@@ -16,9 +16,7 @@
           <form v-on:submit.prevent="onSubmit">
             <p class="control has-addons">
               <input class="input is-expanded" type="text" placeholder="enter todo..." v-model="value">
-              <a class="button is-primary">
-                Submit
-              </a>
+              <button type="submit" class="button is-primary">Submit</button>
             </p>
           </form>
         </div>
