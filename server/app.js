@@ -55,7 +55,7 @@ router.get('/todos', (ctx, next) => {
 router.post('/todos/new', async (ctx, next) => {
   await next();
   const todo = ctx.request.body;
-  store.todos.push(todo);
+  store.todos.unshift(todo);
   ctx.body = todo;
 });
 
