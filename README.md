@@ -1,7 +1,7 @@
 # vue-todo-server
 
 > A realtime todo list app built with vue.
-> [demo](https://vue-todo-server-zkvaumqkat.now.sh)
+> [demo](https://vue-todo-server-paprjqownm.now.sh)
 
 
 ## Build Setup
