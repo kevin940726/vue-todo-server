@@ -5,6 +5,7 @@ const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const fetch = require('isomorphic-fetch');
 const cors = require('kcors');
+const serve = require('koa-static');
 
 const app = new Koa();
 const router = new Router();
@@ -22,6 +23,8 @@ async function init() {
   store.info = result.info;
   return store;
 }
+
+router.prefix('/api');
 
 router.get('/users', (ctx, next) => {
   ctx.body = store.users;
@@ -61,6 +64,7 @@ router.del('/todos/remove', async (ctx, next) => {
 
 app.use(cors());
 app.use(router.routes());
+app.use(serve('dist'));
 app.use(router.allowedMethods());
 app.use(bodyParser());
 app.use(logger());

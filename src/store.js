@@ -3,7 +3,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import fetch from 'isomorphic-fetch';
 
-const API_ORIGIN = '//localhost:3000';
+const API_ORIGIN = '//localhost:3000/api';
 
 Vue.use(Vuex);
 
