@@ -2,8 +2,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import fetch from 'isomorphic-fetch';
+import { port } from '@/../package.json';
 
-const API_ORIGIN = '//localhost:3000/api';
+const API_ORIGIN = process.env.NODE_ENV === 'production' ? '/api' : `//localhost:${port}/api`;
 
 Vue.use(Vuex);
 

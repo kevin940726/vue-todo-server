@@ -4,8 +4,12 @@ const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const fetch = require('isomorphic-fetch');
+const convert = require('koa-convert');
 const cors = require('kcors');
 const serve = require('koa-static');
+const pkg = require('../package.json');
+
+const PORT = pkg.port || 3000;
 
 const app = new Koa();
 const router = new Router();
@@ -15,11 +19,11 @@ const store = {
   todos: [],
 };
 
-async function init() {
+async function fetchUsers() {
   const result = await fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json());
 
-  store.users = result.results;
+  store.users.push(...result.results);
   store.info = result.info;
   return store;
 }
@@ -31,7 +35,10 @@ router.get('/users', (ctx, next) => {
   return next();
 });
 
-router.get('/users/me', (ctx, next) => {
+router.get('/users/me', async (ctx, next) => {
+  if (!store.users.length) {
+    await fetchUsers();
+  }
   const index = Math.floor(Math.random() * store.users.length);
   const user = store.users.splice(index, 1);
   ctx.body = user;
@@ -62,14 +69,11 @@ router.del('/todos/remove', async (ctx, next) => {
   ctx.body = { id };
 });
 
-app.use(cors());
+app.use(convert(cors()));
 app.use(router.routes());
 app.use(serve('dist'));
 app.use(router.allowedMethods());
 app.use(bodyParser());
 app.use(logger());
 
-init()
-  .then(() => {
-    app.listen(3000);
-  });
+app.listen(PORT);
