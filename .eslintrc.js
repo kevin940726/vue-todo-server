@@ -8,11 +8,15 @@ module.exports = {
   },
   env: {
     browser: true,
+    jest: true
   },
-  extends: 'airbnb-base',
+  extends: [
+    'vue',
+    'airbnb-base'
+  ],
   // required to lint *.vue files
   plugins: [
-    'html'
+    'vue'
   ],
   // check if imports actually resolve
   'settings': {
@@ -24,6 +28,9 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
+    // 'semi': ['error', 'always'],
+    // 'jsx-quotes': ["error", "prefer-double"],
+    'no-unused-vars': [2, { 'vars': 'all', 'args': 'none' }],
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',
