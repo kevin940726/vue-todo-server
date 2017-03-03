@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'input-todo',
+  name: 'InputTodo',
   data() {
     return {
       value: '',

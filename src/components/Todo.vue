@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'todo',
+  name: 'Todo',
   props: {
     id: {
       type: String,

@@ -1,10 +1,10 @@
 <template>
   <div class="box todolist">
-    <input-todo/>
+    <InputTodo />
 
     <div>
       <div v-for="(todo, index) in todos">
-        <todo :id="todo.id" :index="index" :name="todo.name" :avatar="todo.avatar" :msg="todo.msg"/>
+        <Todo :id="todo.id" :index="index" :name="todo.name" :avatar="todo.avatar" :msg="todo.msg"/>
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@ import InputTodo from './InputTodo';
 import Todo from './Todo';
 
 export default {
-  name: 'todo-list',
+  name: 'TodoList',
   computed: {
     todos() {
       return this.$store.state.todos;
