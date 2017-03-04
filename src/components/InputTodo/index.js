@@ -41,7 +41,7 @@ export default {
           id: `${this.name}_${Date.now()}`,
         });
 
-        this.value = '';
+        this.$refs.input.value = '';
       }
     },
 
@@ -74,6 +74,7 @@ export default {
                     class="input is-expanded"
                     type="text"
                     placeholder="enter todo..."
+                    ref="input"
                     value={value}
                     onChange={handleChange}
                   />
