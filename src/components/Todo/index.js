@@ -14,14 +14,49 @@ export default {
       type: String,
       default: '',
     },
+    value: {
+      type: String,
+      default: '',
+    },
     handleDelete: {
+      type: Function,
+      default: () => {},
+    },
+    isEditable: {
+      type: Boolean,
+      default: false,
+    },
+    handleEditableToggle: {
+      type: Function,
+      default: () => {},
+    },
+    handleSubmit: {
+      type: Function,
+      default: () => {},
+    },
+    handleEdit: {
       type: Function,
       default: () => {},
     },
   },
 
+  watch: {
+    value() {
+      this.$refs.input.value = this.value;
+    },
+  },
+
   render(h) {
-    const { avatar, name, msg, handleDelete } = this;
+    const {
+      avatar,
+      name,
+      msg,
+      handleDelete,
+      isEditable,
+      handleEditableToggle,
+      handleSubmit,
+      handleEdit,
+    } = this;
 
     return (
       <div class="box">
@@ -36,7 +71,25 @@ export default {
               <p>
                 <strong>{ name }</strong>
                 <br/>
-                { msg }
+                {
+                  isEditable ? (
+                    <form onSubmit={handleSubmit}>
+                      <p class="control has-addons">
+                        <input
+                          class="input"
+                          type="text"
+                          placeholder="enter todo..."
+                          ref="input"
+                          value={msg}
+                          onInput={handleEdit}
+                        />
+                        <button type="submit" class="button is-primary">Submit</button>
+                      </p>
+                    </form>
+                  ) : (
+                    <span onClick={handleEditableToggle}>{msg}</span>
+                  )
+                }
               </p>
             </div>
 

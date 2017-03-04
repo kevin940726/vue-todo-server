@@ -22,6 +22,7 @@
   "dependencies": {
     "bulma": "^0.3.2",
     "isomorphic-fetch": "^2.2.1",
+    "normalizr": "^3.2.2",
     "vue": "^2.2.1",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"

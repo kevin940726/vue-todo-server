@@ -20,8 +20,8 @@ export default {
         <InputTodo />
 
         <div>
-          {todos.map((todo, index) => (
-            <Todo {...{ props: todo }} index={index} />
+          {todos.map(todo => (
+            <Todo key={todo.id} {...{ props: todo }} />
           ))}
         </div>
       </div>

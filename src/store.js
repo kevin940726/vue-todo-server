@@ -26,8 +26,12 @@ const store = new Vuex.Store({
       state.todos.unshift(payload);
     },
 
-    removeTodo(state, payload) {
-      state.todos.splice(payload, 1);
+    removeTodo(state, id) {
+      state.todos = state.todos.filter(todo => todo.id !== id);
+    },
+
+    editTodo(state, { id, value }) {
+      state.todos.find(todo => todo.id === id).msg = value;
     },
   },
   actions: {
@@ -58,8 +62,8 @@ const store = new Vuex.Store({
       }
     },
 
-    async deleteTodo({ commit }, { id, index }) {
-      const todo = await fetch(`${API_ORIGIN}/todos/remove`, {
+    async deleteTodo({ commit }, { id }) {
+      const res = await fetch(`${API_ORIGIN}/todos/remove`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -67,8 +71,22 @@ const store = new Vuex.Store({
         body: JSON.stringify({ id }),
       });
 
+      if (res) {
+        commit('removeTodo', id);
+      }
+    },
+
+    async editTodo({ commit }, payload) {
+      const todo = await fetch(`${API_ORIGIN}/todos/update`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
       if (todo) {
-        commit('removeTodo', index);
+        commit('editTodo', payload);
       }
     },
   },
