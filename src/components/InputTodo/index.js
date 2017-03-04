@@ -41,6 +41,7 @@ export default {
           id: `${this.name}_${Date.now()}`,
         });
 
+        this.value = '';
         this.$refs.input.value = '';
       }
     },
