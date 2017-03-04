@@ -1,53 +1,30 @@
 export default {
   name: 'InputTodo',
 
-  data() {
-    return {
-      value: '',
-    };
-  },
-
-  computed: {
-    name() {
-      const { me } = this.$store.state;
-      if (me && me.name) {
-        return `${me.name.first} ${me.name.last}`;
-      }
-
-      return '';
+  props: {
+    name: {
+      type: String,
+      default: '',
     },
-
-    avatar() {
-      const { me } = this.$store.state;
-      if (me && me.picture) {
-        return me.picture.thumbnail;
-      }
-
-      return null;
+    avatar: {
+      type: String,
+      default: '',
+    },
+    value: {
+      type: String,
+      default: '',
+    },
+    handleChange: {
+      type: Function,
+    },
+    handleSubmit: {
+      type: Function,
     },
   },
 
-  methods: {
-    handleSubmit(e) {
-      if (typeof e !== 'undefined') {
-        e.preventDefault();
-      }
-
-      if (this.value) {
-        this.$store.dispatch('appendTodo', {
-          name: this.name,
-          avatar: this.avatar,
-          msg: this.value,
-          id: `${this.name}_${Date.now()}`,
-        });
-
-        this.value = '';
-        this.$refs.input.value = '';
-      }
-    },
-
-    handleChange(e) {
-      this.value = e.target.value;
+  watch: {
+    value() {
+      this.$refs.input.value = this.value;
     },
   },
 
@@ -77,7 +54,7 @@ export default {
                     placeholder="enter todo..."
                     ref="input"
                     value={value}
-                    onChange={handleChange}
+                    onInput={handleChange}
                   />
                   <button type="submit" class="button is-primary">Submit</button>
                 </p>

@@ -24,13 +24,13 @@ test('clear the input value after submitted', () => {
     ...InputTodo,
     store,
   }).$mount();
+  const ele = inputTodo.$el.querySelector('input[type="text"]');
 
   inputTodo.value = 'value';
   expect(inputTodo.value).toBe('value');
+  expect(ele.value).toBe('value');
 
   inputTodo.handleSubmit();
   expect(inputTodo.value).toBe('');
-
-  const ele = inputTodo.$el.querySelector('input[type="text"]');
   expect(ele.value).toBe('');
 });

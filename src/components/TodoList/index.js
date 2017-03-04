@@ -1,4 +1,4 @@
-import InputTodo from '../InputTodo';
+import InputTodo from '@/containers/InputTodo';
 import Todo from '../Todo';
 
 import styles from './index.css';
