@@ -1,5 +1,5 @@
 import InputTodo from '@/containers/InputTodo';
-import Todo from '../Todo';
+import Todo from '@/containers/Todo';
 
 import styles from './index.css';
 

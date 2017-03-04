@@ -2,12 +2,6 @@ export default {
   name: 'Todo',
 
   props: {
-    id: {
-      type: String,
-    },
-    index: {
-      type: Number,
-    },
     name: {
       type: String,
       default: '',
@@ -20,18 +14,9 @@ export default {
       type: String,
       default: '',
     },
-  },
-
-  methods: {
-    handleDelete(e) {
-      if (typeof e !== 'undefined') {
-        e.preventDeafult();
-      }
-
-      this.$store.dispatch('deleteTodo', {
-        id: this.id,
-        index: this.index,
-      });
+    handleDelete: {
+      type: Function,
+      default: () => {},
     },
   },
 
