@@ -16,9 +16,11 @@ export default {
     },
     handleChange: {
       type: Function,
+      default: () => {},
     },
     handleSubmit: {
       type: Function,
+      default: () => {},
     },
   },
 
